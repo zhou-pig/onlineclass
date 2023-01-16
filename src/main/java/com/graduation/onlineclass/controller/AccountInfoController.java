@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/accountInfo")
-public class AccountInfoController {
+public class AccountInfoController{
 
 }
 

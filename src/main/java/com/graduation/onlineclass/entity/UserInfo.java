@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 周富雄
@@ -39,5 +39,7 @@ public class UserInfo implements Serializable {
     @ApiModelProperty(value = "微信用户唯一标识")
     private String wxCode;
 
-
+    public UserInfo(String wxCode) {
+        this.wxCode = wxCode;
+    }
 }

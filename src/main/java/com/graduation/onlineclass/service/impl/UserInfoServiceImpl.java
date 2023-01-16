@@ -4,6 +4,7 @@ import com.graduation.onlineclass.entity.UserInfo;
 import com.graduation.onlineclass.mapper.UserInfoMapper;
 import com.graduation.onlineclass.service.UserInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +17,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements UserInfoService {
-
+    @Autowired
+    public UserInfoMapper userInfoMapper;
+    public int login(String wxCode){
+        return userInfoMapper.insert(new UserInfo(wxCode));
+    }
 }
