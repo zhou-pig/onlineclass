@@ -24,6 +24,6 @@ mybatis-plus:
 server:
   port: 8080
 
-loginurl: http://localhost:8080/login
+loginurl: http://localhost:8080/swagger-ui.html
 chormpath: C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe
 edgepath: C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe

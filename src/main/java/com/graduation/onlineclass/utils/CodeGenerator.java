@@ -49,7 +49,7 @@ public class CodeGenerator {
         PackageConfig pc = new PackageConfig();
         pc.setParent("com.graduation.onlineclass");
         pc.setController("controller");
-        pc.setService("services");
+        pc.setService("service");
         pc.setMapper("mapper");
         pc.setEntity("entity");
         mpg.setPackageInfo(pc);
