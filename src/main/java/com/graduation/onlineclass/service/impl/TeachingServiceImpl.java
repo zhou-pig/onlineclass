@@ -4,7 +4,12 @@ import com.graduation.onlineclass.entity.Teaching;
 import com.graduation.onlineclass.mapper.TeachingMapper;
 import com.graduation.onlineclass.service.TeachingService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -17,4 +22,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class TeachingServiceImpl extends ServiceImpl<TeachingMapper, Teaching> implements TeachingService {
 
+    @Autowired
+    TeachingMapper teachingMapper;
+    public List<Teaching> getCourseList(String uId) {
+        Map<String ,Object> map=new HashMap<>();
+        map.put("u_id",uId);
+        List<Teaching> list = teachingMapper.selectByMap(map);
+        return list;
+
+    }
 }
