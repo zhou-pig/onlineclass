@@ -30,7 +30,7 @@ public class CourseController {
     @ApiOperation("传入课程号，获得课程的基本信息")
     @GetMapping("getCourseInfo")
     public RespBean getCourseInfo(Long cId){
-        return RespBean.ok(courseService.getById(cId));
+        return RespBean.ok("获取成功！",courseService.getById(cId));
     }
 }
 

@@ -1,6 +1,8 @@
 package com.graduation.onlineclass.entity;
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -36,10 +38,17 @@ public class UserInfo implements Serializable {
     @ApiModelProperty(value = "电话")
     private String phone;
 
+    @TableId
     @ApiModelProperty(value = "微信用户唯一标识")
     private String wxCode;
 
+
     public UserInfo(String wxCode) {
+        this.wxCode = wxCode;
+    }
+
+    public UserInfo( String wxCode,String uId) {
+        this.uId = uId;
         this.wxCode = wxCode;
     }
 }

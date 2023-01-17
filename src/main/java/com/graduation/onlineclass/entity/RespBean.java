@@ -9,8 +9,8 @@ public class RespBean {
         return new RespBean();
     }
 
-    public static RespBean ok(Object obj) {
-        return new RespBean(200, "请求成功", obj);
+    public static RespBean ok(String msg) {
+        return new RespBean(200, msg, null);
     }
 
     public static RespBean ok(String msg, Object obj) {
