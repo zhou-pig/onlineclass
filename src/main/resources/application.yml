@@ -6,7 +6,7 @@ spring:
     #配置连接数据库的各个信息
     driver-class-name: com.mysql.cj.jdbc.Driver
     #    url: jdbc:mysql://121.43.53.31:3306/mapdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    url: jdbc:mysql://localhost:3306/online_class?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/online_class?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: zfx666
   thymeleaf:

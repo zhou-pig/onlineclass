@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 周富雄
@@ -31,7 +31,7 @@ public class Quiz implements Serializable {
     @ApiModelProperty(value = "选择，判断")
     private String type;
 
-    @ApiModelProperty(value = "题目")
+    @ApiModelProperty(value = "题目，判断直接题干。选择，格式为：题目;A选项;B选项;C选项;D选项")
     private String question;
 
     @ApiModelProperty(value = "对于判断，正确为：true，错误为：false。对于选择题，单选就是一个字符，多选如：A,B,C")
@@ -50,8 +50,8 @@ public class Quiz implements Serializable {
     @TableField("isEnded")
     private Integer isended;
 
-    @ApiModelProperty(value = "发布人id")
-    private Long authorId;
+    @ApiModelProperty(value = "题目所在课堂id")
+    private Long teachingId;
 
     @ApiModelProperty(value = "题目分数")
     private Integer score;

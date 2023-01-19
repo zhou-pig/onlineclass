@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 周富雄
@@ -26,7 +26,7 @@ public class Teaching implements Serializable {
     private Long cId;
 
     @ApiModelProperty(value = "成员")
-    private Long uId;
+    private String uId;
 
     @TableId(value = "teaching_id", type = IdType.AUTO)
     private Long teachingId;

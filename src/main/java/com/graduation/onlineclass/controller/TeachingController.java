@@ -31,5 +31,6 @@ public class TeachingController {
     public RespBean getCourseList(String uId){
         return RespBean.ok("获取成功",teachingService.getCourseList(uId));
     }
+
 }
 
