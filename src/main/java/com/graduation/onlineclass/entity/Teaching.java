@@ -26,7 +26,7 @@ public class Teaching implements Serializable {
     private Long cId;
 
     @ApiModelProperty(value = "老师的id")
-    private String uId;
+    private Long uId;
 
     @TableId(value = "teaching_id")
     private Long teachingId;

@@ -28,8 +28,8 @@ public class TeachingController {
 
     @ApiOperation("传入老师号，获取所有授课信息")
     @GetMapping("/getCourseList")
-    public RespBean getCourseList(String uId){
-        return RespBean.ok("获取成功",teachingService.getCourseList(uId));
+    public RespBean getCourseList(Long uId){
+        return RespBean.ok("获取成功",teachingService.getCourseListByuId(uId));
     }
 
 }

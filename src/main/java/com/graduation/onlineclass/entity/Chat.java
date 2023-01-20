@@ -29,10 +29,10 @@ public class Chat implements Serializable {
     private Long chatId;
 
     @ApiModelProperty(value = "发送者的id")
-    private String sender;
+    private Long sender;
 
     @ApiModelProperty(value = "接收者的id")
-    private String receiver;
+    private Long receiver;
 
     @ApiModelProperty(value = "发送时间")
     private Date sendTime;

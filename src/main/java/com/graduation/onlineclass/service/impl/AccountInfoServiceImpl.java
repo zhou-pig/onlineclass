@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -24,5 +25,15 @@ public class AccountInfoServiceImpl extends ServiceImpl<AccountInfoMapper, Accou
     AccountInfoMapper accountInfoMapper;
     public boolean isExistent(Map<String, Object> map) {
         return accountInfoMapper.selectByMap(map).size()>0;
+    }
+
+    //通过uId，获取学生基本信息
+    public Map<String, Object> getUserBaseInfoById(Long uId) {
+        AccountInfo student=accountInfoMapper.selectById(uId);
+        Map<String,Object> studentBaseInfo=new HashMap<>();
+        studentBaseInfo.put("name",student.getRealName());
+        studentBaseInfo.put("university",student.getUniversity());
+        studentBaseInfo.put("uId",student.getId());
+        return studentBaseInfo;
     }
 }

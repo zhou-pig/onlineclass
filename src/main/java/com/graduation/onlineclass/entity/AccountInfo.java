@@ -1,6 +1,8 @@
 package com.graduation.onlineclass.entity;
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -8,7 +10,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 周富雄
@@ -22,7 +24,7 @@ public class AccountInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "账号（学号、教师号）")
-    private String uId;
+    private String account;
 
     private String password;
 
@@ -34,6 +36,7 @@ public class AccountInfo implements Serializable {
     @ApiModelProperty(value = "真实名称")
     private String realName;
 
+    @TableId
     @ApiModelProperty(value = "该表的主键")
     private Long id;
 

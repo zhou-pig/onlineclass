@@ -24,11 +24,10 @@ public class TeachingServiceImpl extends ServiceImpl<TeachingMapper, Teaching> i
 
     @Autowired
     TeachingMapper teachingMapper;
-    public List<Teaching> getCourseList(String uId) {
-        Map<String ,Object> map=new HashMap<>();
-        map.put("u_id",uId);
-        List<Teaching> list = teachingMapper.selectByMap(map);
-        return list;
 
+    public List<Teaching> getCourseListByuId(Long uId) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("u_id",uId);
+        return teachingMapper.selectByMap(map);
     }
 }
