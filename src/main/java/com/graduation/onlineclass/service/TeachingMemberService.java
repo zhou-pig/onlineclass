@@ -1,6 +1,6 @@
 package com.graduation.onlineclass.service;
 
-import com.graduation.onlineclass.entity.AccountInfo;
+import com.graduation.onlineclass.entity.TeachingMember;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author 周富雄
- * @since 2023-01-20
+ * @since 2023-01-19
  */
-public interface AccountInfoService extends IService<AccountInfo> {
+public interface TeachingMemberService extends IService<TeachingMember> {
 
 }

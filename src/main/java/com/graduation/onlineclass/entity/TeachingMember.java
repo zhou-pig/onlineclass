@@ -1,7 +1,5 @@
 package com.graduation.onlineclass.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -10,26 +8,27 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author 周富雄
- * @since 2023-01-16
+ * @since 2023-01-19
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@ApiModel(value="Teaching对象", description="")
-public class Teaching implements Serializable {
+@ApiModel(value="TeachingMember对象", description="")
+public class TeachingMember implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long cId;
+    @ApiModelProperty(value = "学生的id")
+    private String uid;
 
-    @ApiModelProperty(value = "老师的id")
-    private String uId;
-
-    @TableId(value = "teaching_id")
+    @ApiModelProperty(value = "所上课堂的id")
     private Long teachingId;
+
+    @ApiModelProperty(value = "表的id")
+    private Long id;
 
 
 }

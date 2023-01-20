@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author 周富雄
- * @since 2023-01-16
+ * @since 2023-01-20
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -33,6 +33,9 @@ public class AccountInfo implements Serializable {
 
     @ApiModelProperty(value = "真实名称")
     private String realName;
+
+    @ApiModelProperty(value = "该表的主键")
+    private Long id;
 
 
 }

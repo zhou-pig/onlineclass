@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author 周富雄
- * @since 2023-01-16
+ * @since 2023-01-20
  */
 @Mapper
 public interface AccountInfoMapper extends BaseMapper<AccountInfo> {
