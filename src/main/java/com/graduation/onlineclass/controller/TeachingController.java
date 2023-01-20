@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/teaching")
-@Api(tags = "授课信息模块")
+@Api(tags = "老师授课信息模块")
 public class TeachingController {
     @Autowired
     TeachingServiceImpl teachingService;
 
-    @ApiOperation("传入学号，获取所有授课信息")
+    @ApiOperation("传入老师号，获取所有授课信息")
     @GetMapping("/getCourseList")
     public RespBean getCourseList(String uId){
         return RespBean.ok("获取成功",teachingService.getCourseList(uId));
