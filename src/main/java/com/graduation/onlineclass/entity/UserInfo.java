@@ -23,8 +23,9 @@ public class UserInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId
     @ApiModelProperty(value = "用户id")
-    private String uId;
+    private Long uId;
 
     @ApiModelProperty(value = "用户名")
     private String username;
@@ -38,7 +39,6 @@ public class UserInfo implements Serializable {
     @ApiModelProperty(value = "电话")
     private String phone;
 
-    @TableId
     @ApiModelProperty(value = "微信用户唯一标识")
     private String wxCode;
 
@@ -47,8 +47,8 @@ public class UserInfo implements Serializable {
         this.wxCode = wxCode;
     }
 
-    public UserInfo( String wxCode,String uId) {
-        this.uId = uId;
+    public UserInfo( String wxCode,Long uId) {
         this.wxCode = wxCode;
+        this.uId = uId;
     }
 }
