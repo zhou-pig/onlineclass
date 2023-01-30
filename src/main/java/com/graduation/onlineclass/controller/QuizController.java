@@ -2,16 +2,15 @@ package com.graduation.onlineclass.controller;
 
 
 import com.graduation.onlineclass.entity.Quiz;
+import com.graduation.onlineclass.entity.QuizSubmit;
 import com.graduation.onlineclass.entity.RespBean;
+import com.graduation.onlineclass.service.QuizService;
 import com.graduation.onlineclass.service.impl.QuizServiceImpl;
+import com.graduation.onlineclass.service.impl.QuizSubmitServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -27,6 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class QuizController {
     @Autowired
     QuizServiceImpl quizService;
+    @Autowired
+    QuizSubmitServiceImpl quizSubmitService;
 
     @ApiOperation("插入一个题目")
     @PostMapping("/insertQuiz")
@@ -36,6 +37,22 @@ public class QuizController {
             return RespBean.ok("题目发布成功");
         }
         return RespBean.error("题目发布失败，请重试");
+    }
+
+    @ApiOperation("传入teaching_id，获取所有题目")
+    @GetMapping("/getQuiz")
+    public RespBean getQuiz(Long id){
+        return RespBean.ok("获取成功",quizService.getQuizByTid(id));
+    }
+
+    @ApiOperation("提交一个题目")
+    @PostMapping("/submitQuiz")
+    public RespBean insertQuizSubmit(@RequestBody QuizSubmit quizSubmit) {
+        System.out.println(quizSubmit);
+        if (quizSubmitService.save(quizSubmit)) {
+            return RespBean.ok("题目提交成功");
+        }
+        return RespBean.error("题目提交失败，请重试");
     }
 }
 
