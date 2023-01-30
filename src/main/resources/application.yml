@@ -13,13 +13,18 @@ spring:
     content-type: text/html
     cache: false
     mode: LEGACYHTML5
-
+  #设置文件大小限制
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   #配置类型别名所对应的包
-#  type-aliases-package: com.graduation.onlineclass.entity
+  #  type-aliases-package: com.graduation.onlineclass.entity
+
 
 server:
   port: 8080
@@ -27,3 +32,6 @@ server:
 loginurl: http://localhost:8080/swagger-ui.html
 chormpath: C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe
 edgepath: C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe
+#文件路径
+filepath: C:\\Users\\86182\\Desktop\\测试上传的文件的保存文件夹\\
+
