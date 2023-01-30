@@ -31,10 +31,10 @@ public class Quiz implements Serializable {
     @ApiModelProperty(value = "选择，判断")
     private String type;
 
-    @ApiModelProperty(value = "题目，判断直接题干。选择，格式为：题目;A选项;B选项;C选项;D选项")
+    @ApiModelProperty(value = "题目，判断直接题干。选择，格式为：题目;选项1;选项2;选项3;选项4")
     private String question;
 
-    @ApiModelProperty(value = "对于判断，正确为：true，错误为：false。对于选择题，单选就是一个字符，多选如：A,B,C")
+    @ApiModelProperty(value = "对于判断，正确为：1，错误为：0。对于选择题，单选就是一个选项序号，多选如：0,1,2")
     private String answer;
 
     @ApiModelProperty(value = "题目开始时间")
