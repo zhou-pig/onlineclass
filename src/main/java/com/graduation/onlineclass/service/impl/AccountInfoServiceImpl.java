@@ -32,11 +32,14 @@ public class AccountInfoServiceImpl extends ServiceImpl<AccountInfoMapper, Accou
 
     //通过uId，获取用户基本信息
     public Map<String, Object> getUserBaseInfoById(Long uId) {
+        System.out.println("getUserBaseInfoById:"+uId);
         AccountInfo student = accountInfoMapper.selectById(uId);
+        System.out.println(student);
         Map<String, Object> studentBaseInfo = new HashMap<>();
         studentBaseInfo.put("name", student.getRealName());
         studentBaseInfo.put("university", student.getUniversity());
         studentBaseInfo.put("uId", student.getId());
         return studentBaseInfo;
     }
+
 }

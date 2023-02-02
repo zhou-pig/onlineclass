@@ -3,11 +3,18 @@ package com.graduation.onlineclass.controller;
 
 import com.graduation.onlineclass.entity.Discussion;
 import com.graduation.onlineclass.entity.RespBean;
+import com.graduation.onlineclass.service.impl.AccountInfoServiceImpl;
 import com.graduation.onlineclass.service.impl.DiscussionServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -24,7 +31,8 @@ public class DiscussionController {
 
     @Autowired
     DiscussionServiceImpl discussionService;
-
+    @Autowired
+    AccountInfoServiceImpl accountInfoService;
     @ApiOperation("发布一条讨论")
     @PostMapping("/insertDiscussion")
     public RespBean insertDiscussion(@RequestBody Discussion discussion) {
@@ -36,7 +44,17 @@ public class DiscussionController {
     @ApiOperation("获取某个讨论区的所有讨论，需要传入teaching_id")
     @GetMapping("/getDiscussionByTid")
     public RespBean getDiscussionByTid(Long tid) {
-        return RespBean.ok("获取成功",discussionService.getDiscussionByTid(tid));
+        List<Discussion> discussions = discussionService.getDiscussionByTid(tid);
+        System.out.println(discussions);
+        List<Object> list=new LinkedList<>();
+        for(Discussion discussion:discussions){
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("discussion",discussion);
+            map.put("userInfo",accountInfoService.getUserBaseInfoById(discussion.getUId()));
+            list.add(map);
+        }
+//        List<Map<String, Object>> list = discussions.stream().map(item -> accountInfoService.getUserBaseInfoById(item.getUId())).collect(Collectors.toList());
+        return RespBean.ok("获取成功",list);
     }
 }
 
