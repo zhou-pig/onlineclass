@@ -3,10 +3,11 @@
 <mapper namespace="com.graduation.onlineclass.mapper.QuizMapper">
 
     <select id="getMyQuiz" resultType="java.util.HashMap">
-        select *
-        from (select *
-              FROM quiz_submit
-              where quiz_submit.q_id in (select q_id FROM quiz where teaching_id = #{tid}) and u_id = #{uid}) t
-                 right join quiz on t.q_id = quiz.q_id
+        select q.*, qs.*
+        from quiz q
+                 left join quiz_submit qs
+                           on qs.q_id = q.q_id
+                               and qs.u_id = #{uid}
+        where q.teaching_id = #{tid}
     </select>
 </mapper>
