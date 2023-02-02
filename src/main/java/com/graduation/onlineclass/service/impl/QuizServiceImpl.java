@@ -29,4 +29,8 @@ public class QuizServiceImpl extends ServiceImpl<QuizMapper, Quiz> implements Qu
         quizQueryWrapper.eq("teaching_id",id);
         return quizMapper.selectList(quizQueryWrapper);
     }
+
+    public List<Object> getMyQuiz(Long tid, Long uid) {
+        return quizMapper.getMyQuiz(tid,uid);
+    }
 }

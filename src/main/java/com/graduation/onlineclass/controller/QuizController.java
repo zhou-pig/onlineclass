@@ -40,9 +40,21 @@ public class QuizController {
     }
 
     @ApiOperation("传入teaching_id，获取所有题目")
-    @GetMapping("/getQuiz")
+    @GetMapping("/getQuizByTid")
     public RespBean getQuiz(Long id){
         return RespBean.ok("获取成功",quizService.getQuizByTid(id));
+    }
+
+    @ApiOperation("传入q_id，获取指定题目")
+    @GetMapping("/getQuizByQid")
+    public RespBean getQuizByQid(Long id){
+        return RespBean.ok("获取成功",quizService.getById(id));
+    }
+
+    @ApiOperation("传入t_id，u_id，获取对应题目以及作答情况")
+    @GetMapping("/getMyQuiz")
+    public RespBean getMyQuiz(Long tid,Long uid){
+        return RespBean.ok("获取成功",quizService.getMyQuiz(tid,uid));
     }
 
     @ApiOperation("提交一个题目")

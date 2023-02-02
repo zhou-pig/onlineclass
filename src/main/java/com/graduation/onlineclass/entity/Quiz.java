@@ -5,6 +5,8 @@ import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -36,13 +38,13 @@ public class Quiz implements Serializable {
 
     @ApiModelProperty(value = "对于判断，正确为：1，错误为：0。对于选择题，单选就是一个选项序号，多选如：0,1,2")
     private String answer;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")//后端注解格式化日期
     @ApiModelProperty(value = "题目开始时间")
     private Date startTime;
 
     @ApiModelProperty(value = "答题时间，单位：秒")
     private Integer duration;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")//后端注解格式化日期
     @ApiModelProperty(value = "题目结束时间")
     private Date endTime;
 
