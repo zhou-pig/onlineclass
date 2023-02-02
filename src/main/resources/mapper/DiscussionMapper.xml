@@ -2,4 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.graduation.onlineclass.mapper.DiscussionMapper">
 
+    <select id="getDiscussionByTid" resultType="com.graduation.onlineclass.entity.Discussion" >
+        select * from discussion where teaching_id = #{tid}
+    </select>
 </mapper>

@@ -23,7 +23,7 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   #配置类型别名所对应的包
-  #  type-aliases-package: com.graduation.onlineclass.entity
+    type-aliases-package: com.graduation.onlineclass.entity
 
 
 server:
