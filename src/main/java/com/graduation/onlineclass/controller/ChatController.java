@@ -41,5 +41,10 @@ public class ChatController {
     public RespBean getChatList(Long id) {
         return RespBean.ok("聊天记录获取成功",chatService.getChatListById(id));
     }
+    @ApiOperation("传入receiver,sender,聊天记录设为已读")
+    @GetMapping("/setAllIsRead")
+    public RespBean setAllIsRead(Long receiver,Long sender) {
+        return RespBean.ok("更新成功！",chatService.setAllIsRead(receiver,sender));
+    }
 }
 

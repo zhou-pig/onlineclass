@@ -21,4 +21,6 @@ public interface ChatMapper extends BaseMapper<Chat> {
     List<Long> getChatAllId(Long id);
     //获取接收方未读数据条数
     Integer getUnreadNum(Long receiver,Long sender);
+    //将消息设为已读
+    Integer setAllIsRead(Long receiver,Long sender);
 }

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.graduation.onlineclass.mapper.ChatMapper">
+    <update id="setAllIsRead">
+        update chat set is_read = 1 where (sender = #{sender} and receiver = #{receiver})
+    </update>
 
     <select id="getChatListByTwoId" resultType="com.graduation.onlineclass.entity.Chat">
         select * from chat where (sender = #{id1} and receiver = #{id2}) or (sender = #{id2} and receiver = #{id1}) order by send_time;

@@ -34,12 +34,15 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements Ch
         for(Long id2:chatAllId){
             List<Chat> list=chatMapper.getChatListByTwoId(id1,id2);
             Map<String, Object> map = new HashMap<>();
-            map.put("name",accountInfoMapper.getRealNameById(id2));
+            map.put("userinfo",accountInfoMapper.selectById(id2));
             map.put("latestMsg",list.get(list.size()-1));
             map.put("unreadNum",chatMapper.getUnreadNum(id1,id2));
             map.put("chatList",list);
             chatList.add(map);
         }
         return  chatList;
+    }
+    public Integer setAllIsRead(Long receiver,Long sender){
+        return chatMapper.setAllIsRead(receiver,sender);
     }
 }
