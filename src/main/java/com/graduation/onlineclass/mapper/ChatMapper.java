@@ -19,4 +19,6 @@ public interface ChatMapper extends BaseMapper<Chat> {
 
     List<Chat> getChatListByTwoId(Long id1,Long id2);
     List<Long> getChatAllId(Long id);
+    //获取接收方未读数据条数
+    Integer getUnreadNum(Long receiver,Long sender);
 }

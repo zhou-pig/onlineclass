@@ -8,4 +8,7 @@
     <select id="getChatAllId" resultType="java.lang.Long">
         select distinct sender from chat where receiver = #{id} union select distinct receiver from chat where sender = #{id};
     </select>
+    <select id="getUnreadNum" resultType="java.lang.Integer">
+        select count(*) from chat where (sender = #{sender} and receiver = #{receiver}) and is_read = 0
+    </select>
 </mapper>

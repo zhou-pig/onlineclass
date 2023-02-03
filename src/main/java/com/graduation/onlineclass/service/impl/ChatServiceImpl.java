@@ -36,6 +36,7 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements Ch
             Map<String, Object> map = new HashMap<>();
             map.put("name",accountInfoMapper.getRealNameById(id2));
             map.put("latestMsg",list.get(list.size()-1));
+            map.put("unreadNum",chatMapper.getUnreadNum(id1,id2));
             map.put("chatList",list);
             chatList.add(map);
         }
