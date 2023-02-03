@@ -14,5 +14,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface AccountInfoMapper extends BaseMapper<AccountInfo> {
-
+    String getRealNameById(Long id);
 }

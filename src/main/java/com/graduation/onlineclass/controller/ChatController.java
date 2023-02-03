@@ -7,11 +7,7 @@ import com.graduation.onlineclass.service.impl.ChatServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -38,6 +34,12 @@ public class ChatController {
             return RespBean.ok("信息发送成功");
         }
         return RespBean.error("信息发送失败，请重试");
+    }
+
+    @ApiOperation("传入一个用户的id，获取其所有聊天记录")
+    @GetMapping("/getChatList")
+    public RespBean getChatList(Long id) {
+        return RespBean.ok("聊天记录获取成功",chatService.getChatListById(id));
     }
 }
 

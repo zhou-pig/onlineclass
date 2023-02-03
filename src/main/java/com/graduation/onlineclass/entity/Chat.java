@@ -3,6 +3,7 @@ package com.graduation.onlineclass.entity;
 import java.util.Date;
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
@@ -25,7 +26,7 @@ public class Chat implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId
+    @TableId( type = IdType.AUTO)
     @ApiModelProperty(value = "聊天信息的id")
     private Long chatId;
 
