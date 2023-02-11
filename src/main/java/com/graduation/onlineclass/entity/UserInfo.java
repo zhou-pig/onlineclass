@@ -46,6 +46,8 @@ public class UserInfo implements Serializable {
     @ApiModelProperty(value = "微信用户唯一标识")
     private String wxCode;
 
+    @ApiModelProperty(value = "头像的url")
+    private String avatar;
 
     public UserInfo(String wxCode) {
         this.wxCode = wxCode;
