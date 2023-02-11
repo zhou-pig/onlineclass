@@ -2,6 +2,7 @@ package com.graduation.onlineclass.entity;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -36,7 +37,7 @@ public class AccountInfo implements Serializable {
     @ApiModelProperty(value = "真实名称")
     private String realName;
 
-    @TableId
+    @TableId(type = IdType.AUTO)
     @ApiModelProperty(value = "该表的主键")
     private Long id;
 

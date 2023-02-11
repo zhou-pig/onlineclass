@@ -8,7 +8,6 @@
  */
 package com.graduation.onlineclass.controller;
 
-import com.graduation.onlineclass.entity.RespBean;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.tomcat.util.http.fileupload.IOUtils;

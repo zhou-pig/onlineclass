@@ -53,7 +53,9 @@ public class UserInfoController {
             Long uId=accountInfoList.get(0).getId();
             System.out.println("存在！,uId="+uId);
             System.out.println(map);
+            System.out.println("准备创建userInfo");
             UserInfo userInfo = new UserInfo(wxCode, uId);
+            System.out.println("userInfo创建成功");
             System.out.println(userInfo);
             if(userInfoService.getById(uId)!=null){
                 return RespBean.error("该账号已被绑定，请联系管理员！");
