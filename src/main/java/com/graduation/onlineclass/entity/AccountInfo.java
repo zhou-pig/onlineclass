@@ -41,5 +41,7 @@ public class AccountInfo implements Serializable {
     @ApiModelProperty(value = "该表的主键")
     private Long id;
 
+    @ApiModelProperty(value = "所在班级的id")
+    private Long cId;
 
 }
