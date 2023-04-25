@@ -42,12 +42,11 @@ public class UserInfoController {
 //        }
         return RespBean.ok("登录成功");
     }
-    @ApiOperation("绑定学校的身份信息")
+    @ApiOperation("绑定用户的身份信息")
     @PostMapping("/bindAccount")
     public RespBean bindAccount(@RequestBody Map<String,Object> map){
         String wxCode= (String) map.get("wx_code");
         map.remove("wx_code");
-
         List<AccountInfo> accountInfoList = accountInfoService.getAccountInfoByMap(map);
         if(accountInfoList.size()>0){
             Long uId=accountInfoList.get(0).getId();
@@ -57,10 +56,10 @@ public class UserInfoController {
             UserInfo userInfo = new UserInfo(wxCode, uId);
             System.out.println("userInfo创建成功");
             System.out.println(userInfo);
-            if(userInfoService.getById(uId)!=null){
+            if(userInfoService.getById(uId).getWxCode()!=null){
                 return RespBean.error("该账号已被绑定，请联系管理员！");
             }
-            if(userInfoService.save(userInfo)){
+            if(userInfoService.updateById(userInfo)){
                 return RespBean.ok("绑定成功！");
             }else{
                 return RespBean.error("服务器内部错误，请稍后重试！");
