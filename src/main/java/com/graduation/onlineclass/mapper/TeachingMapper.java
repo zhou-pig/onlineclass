@@ -15,4 +15,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface TeachingMapper extends BaseMapper<Teaching> {
 
+    Long getTeachingId(Long tid, Long cid);
 }

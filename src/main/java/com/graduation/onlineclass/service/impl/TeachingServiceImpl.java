@@ -30,4 +30,8 @@ public class TeachingServiceImpl extends ServiceImpl<TeachingMapper, Teaching> i
         map.put("u_id",uId);
         return teachingMapper.selectByMap(map);
     }
+
+    public Long getTeachingId(Long tid, Long cid) {
+        return teachingMapper.getTeachingId(tid,cid);
+    }
 }

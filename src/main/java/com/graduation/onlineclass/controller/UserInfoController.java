@@ -60,7 +60,7 @@ public class UserInfoController {
                 return RespBean.error("该账号已被绑定，请联系管理员！");
             }
             if(userInfoService.updateById(userInfo)){
-                return RespBean.ok("绑定成功！");
+                return RespBean.ok("绑定成功！",uId);//返回uid
             }else{
                 return RespBean.error("服务器内部错误，请稍后重试！");
             }

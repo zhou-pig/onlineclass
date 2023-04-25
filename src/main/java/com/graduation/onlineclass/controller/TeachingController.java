@@ -38,5 +38,11 @@ public class TeachingController {
         return RespBean.ok("获取成功",teachingService.getById(tid));
     }
 
+    @ApiOperation("传入老师和课程id，获取对应teaching_id")
+    @GetMapping("/getTeachingId")
+    public RespBean getTeaching(Long tid,Long cid){
+        return RespBean.ok("获取成功",teachingService.getTeachingId(tid,cid));
+    }
+
 }
 

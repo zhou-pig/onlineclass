@@ -45,4 +45,8 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat> implements Ch
     public Integer setAllIsRead(Long receiver,Long sender){
         return chatMapper.setAllIsRead(receiver,sender);
     }
+
+    public Object getChatListByTwoId(Long id1, Long id2) {
+        return chatMapper.getChatListByTwoId(id1,id2);
+    }
 }

@@ -1,6 +1,5 @@
 package com.graduation.onlineclass.controller;
 
-
 import com.graduation.onlineclass.entity.Chat;
 import com.graduation.onlineclass.entity.RespBean;
 import com.graduation.onlineclass.service.impl.ChatServiceImpl;
@@ -41,6 +40,13 @@ public class ChatController {
     public RespBean getChatList(Long id) {
         return RespBean.ok("聊天记录获取成功",chatService.getChatListById(id));
     }
+
+    @ApiOperation("传入一个用户的id，获取其所有聊天记录")
+    @GetMapping("/getChatListByTwoId")
+    public RespBean getChatListByTwoId(Long id1,Long id2) {
+        return RespBean.ok("聊天记录获取成功",chatService.getChatListByTwoId(id1,id2));
+    }
+
     @ApiOperation("传入receiver,sender,聊天记录设为已读")
     @GetMapping("/setAllIsRead")
     public RespBean setAllIsRead(Long receiver,Long sender) {
