@@ -5,4 +5,13 @@
     <select id="getRealNameById" resultType="java.lang.String">
         select real_name from account_info where id = #{id}
     </select>
+    <select id="getAllId" resultType="java.lang.Long">
+        SELECT id FROM account_info
+    </select>
+    <select id="getAllIdByKey" resultType="java.lang.Long">
+        SELECT id FROM account_info WHERE
+            university like CONCAT('%', #{key}, '%') or
+            real_name like CONCAT('%', #{key}, '%') or
+            account like CONCAT('%', #{key}, '%')
+    </select>
 </mapper>

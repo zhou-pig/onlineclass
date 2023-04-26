@@ -27,6 +27,9 @@ public class AccountInfoController {
     @ApiOperation("添加账号信息")
     @PostMapping("/insert")
     public RespBean insertAccountInfo(@RequestBody AccountInfo accountInfo) {
+        if(accountInfoService.isExisted(accountInfo)){
+            return RespBean.error("已经存在该用户！");
+        }
         if (accountInfoService.save(accountInfo))
             return RespBean.ok("添加成功！");
         else
@@ -56,5 +59,17 @@ public class AccountInfoController {
     public RespBean getAllAccountInfo() {
         return RespBean.ok("获取成功", accountInfoService.getAccountInfoByMap(null));
     }
+
+    @ApiOperation("关键字查找（学校，姓名，id），获取所有相关账号信息")
+    @GetMapping("/getAllAccountInfoByKey")
+    public RespBean getAllAccountInfoByKey(String key) {
+        return RespBean.ok("获取成功", accountInfoService.getAllAccountInfoByKey(key));
+    }
+
+//    @ApiOperation("通过id删除用户信息")
+//    @GetMapping("/deleteUserById")
+//    public RespBean deleteUserById(Long id) {
+//        return RespBean.ok("删除成功", accountInfoService.deleteUserById(id));
+//    }
 }
 

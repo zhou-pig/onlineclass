@@ -4,6 +4,8 @@ import com.graduation.onlineclass.entity.AccountInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -15,4 +17,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface AccountInfoMapper extends BaseMapper<AccountInfo> {
     String getRealNameById(Long id);
+
+    List<Long> getAllId();
+
+    List<Long> getAllIdByKey(String key);
 }
