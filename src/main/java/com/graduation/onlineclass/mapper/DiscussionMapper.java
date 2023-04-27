@@ -18,4 +18,6 @@ import java.util.List;
 public interface DiscussionMapper extends BaseMapper<Discussion> {
 
     List<Discussion> getDiscussionByTid(Long tid);
+
+    List<Discussion> getByKey(String key);
 }

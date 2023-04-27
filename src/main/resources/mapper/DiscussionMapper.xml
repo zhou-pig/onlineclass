@@ -5,4 +5,7 @@
     <select id="getDiscussionByTid" resultType="com.graduation.onlineclass.entity.Discussion" >
         select * from discussion where teaching_id = #{tid} order by time desc
     </select>
+    <select id="getByKey" resultType="com.graduation.onlineclass.entity.Discussion">
+        select * from discussion where content like concat('%',#{key},'%')
+    </select>
 </mapper>

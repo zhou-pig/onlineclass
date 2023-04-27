@@ -66,7 +66,6 @@ public class AccountInfoController {
         else
             return RespBean.error("修改失败，请重试！");
     }
-
     @ApiOperation("获取所有账号信息")
     @GetMapping("/getAll")
     public RespBean getAllAccountInfo() {

@@ -33,12 +33,27 @@ public class DiscussionController {
     DiscussionServiceImpl discussionService;
     @Autowired
     AccountInfoServiceImpl accountInfoService;
+
     @ApiOperation("发布一条讨论")
     @PostMapping("/insertDiscussion")
     public RespBean insertDiscussion(@RequestBody Discussion discussion) {
         if (discussionService.save(discussion))
             return RespBean.ok("讨论发布成功");
         return RespBean.error("发布失败，请稍后重试");
+    }
+
+    @ApiOperation("传入id，删除此条讨论")
+    @GetMapping("/delete")
+    public RespBean delete(Long id) {
+        if (discussionService.removeById(id))
+            return RespBean.ok("讨论删除成功");
+        return RespBean.error("删除失败，请稍后重试");
+    }
+
+    @ApiOperation("传入key，查询所有包含该关键字的讨论")
+    @GetMapping("/getAllByKey")
+    public RespBean getAllByKey(String key) {
+        return RespBean.ok("获取成功",discussionService.getAllByKey(key));
     }
 
     @ApiOperation("获取某个讨论区的所有讨论，需要传入teaching_id")
