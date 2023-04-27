@@ -29,6 +29,12 @@ public class AccountInfoController {
     @Autowired
     AccountInfoServiceImpl accountInfoService;
 
+    @ApiOperation("通过id，获取账号信息")
+    @GetMapping("/get")
+    public RespBean getAccountInfoById(Long id) {
+       return RespBean.ok("获取成功",accountInfoService.getById(id));
+    }
+
     @ApiOperation("添加账号信息")
     @PostMapping("/insert")
     public RespBean insertAccountInfo(@RequestBody AccountInfo accountInfo) {
@@ -53,6 +59,8 @@ public class AccountInfoController {
     @ApiOperation("更新账号信息")
     @PostMapping("/update")
     public RespBean updateAccountInfo(@RequestBody AccountInfo accountInfo) {
+        System.out.println("update!");
+        System.out.println(accountInfo);
         if (accountInfoService.updateById(accountInfo))
             return RespBean.ok("修改成功！");
         else
