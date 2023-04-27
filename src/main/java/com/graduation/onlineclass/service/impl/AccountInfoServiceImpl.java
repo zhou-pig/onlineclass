@@ -37,6 +37,7 @@ public class AccountInfoServiceImpl extends ServiceImpl<AccountInfoMapper, Accou
     public Map<String, Object> getUserBaseInfoById(Long uId) {
         System.out.println("getUserBaseInfoById:"+uId);
         AccountInfo student = accountInfoMapper.selectById(uId);
+
         System.out.println(student);
         Map<String, Object> studentBaseInfo = new HashMap<>();
         studentBaseInfo.put("name", student.getRealName());

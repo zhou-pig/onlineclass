@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * <p>
@@ -20,6 +21,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value="AccountInfo对象", description="")
+@NoArgsConstructor
 public class AccountInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,4 +46,13 @@ public class AccountInfo implements Serializable {
     @ApiModelProperty(value = "所在班级的id")
     private Long cId;
 
+    public AccountInfo(String account, String password, String university, String role, String realName, Long id, Long cId) {
+        this.account = account;
+        this.password = password;
+        this.university = university;
+        this.role = role;
+        this.realName = realName;
+        this.id = id;
+        this.cId = cId;
+    }
 }

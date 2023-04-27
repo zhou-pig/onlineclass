@@ -1,6 +1,5 @@
 package com.graduation.onlineclass.controller;
 
-
 import com.graduation.onlineclass.entity.AccountInfo;
 import com.graduation.onlineclass.entity.RespBean;
 import com.graduation.onlineclass.service.impl.AccountInfoServiceImpl;
@@ -8,6 +7,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * <p>
@@ -27,7 +32,7 @@ public class AccountInfoController {
     @ApiOperation("添加账号信息")
     @PostMapping("/insert")
     public RespBean insertAccountInfo(@RequestBody AccountInfo accountInfo) {
-        if(accountInfoService.isExisted(accountInfo)){
+        if (accountInfoService.isExisted(accountInfo)) {
             return RespBean.error("已经存在该用户！");
         }
         if (accountInfoService.save(accountInfo))
@@ -66,10 +71,42 @@ public class AccountInfoController {
         return RespBean.ok("获取成功", accountInfoService.getAllAccountInfoByKey(key));
     }
 
-//    @ApiOperation("通过id删除用户信息")
-//    @GetMapping("/deleteUserById")
-//    public RespBean deleteUserById(Long id) {
-//        return RespBean.ok("删除成功", accountInfoService.deleteUserById(id));
-//    }
+    @PostMapping("/addUserByFile")
+    @ApiOperation("通过文件录入用户信息")
+    public RespBean saveFile(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+        try {
+            // 获取上传的文件名
+            String fileName = file.getOriginalFilename();
+            // 获取文件输入流
+            InputStream inputStream = file.getInputStream();
+            // 读取文件内容
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+            String line = null;
+            ArrayList<AccountInfo> failList = new ArrayList<>();
+            ArrayList<AccountInfo> successList = new ArrayList<>();
+            while ((line = br.readLine()) != null) {
+                // 处理每一行的文件内容，比如输出到控制台
+                System.out.println(line);
+                String[] split = line.split(" ");
+                String university = split[0];
+                String role = split[1];
+                String name = split[2];
+                String account = split[3];
+                String password = split[4];
+                AccountInfo info = new AccountInfo(account, password, university, role, name,null, null);
+                if (accountInfoService.isExisted(info) || !accountInfoService.save(info)) {//未录入成功
+                    failList.add(info);
+                } else {
+                    successList.add(info);
+                }
+            }
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("failList", failList);
+            map.put("successList", successList);
+            return RespBean.ok("录入成功", map);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return RespBean.error("文件读取错误");
+        }
+    }
 }
-
