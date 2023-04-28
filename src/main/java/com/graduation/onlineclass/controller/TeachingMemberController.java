@@ -97,5 +97,11 @@ public class TeachingMemberController {
         }
         return RespBean.ok("获取成功", list);
     }
+
+    @ApiOperation("传入teachingId和uId,删除该用户在此课堂的信息")
+    @GetMapping("/deleteUserFromTeaching")
+    public RespBean deleteUserFromTeaching(Long tid,Long uid){
+        return RespBean.ok("删除成功",teachingMemberService.deleteUserFromTeaching(tid,uid));
+    }
 }
 

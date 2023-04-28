@@ -35,7 +35,7 @@ public class TeachingController {
     @ApiOperation("传入teaching_id，获取对应课程信息")
     @GetMapping("/getTeaching")
     public RespBean getTeaching(Long tid){
-        return RespBean.ok("获取成功",teachingService.getById(tid));
+        return RespBean.ok("获取成功",teachingService.getTeachingById(tid));
     }
 
     @ApiOperation("传入老师和课程id，获取对应teaching_id")
@@ -44,5 +44,12 @@ public class TeachingController {
         return RespBean.ok("获取成功",teachingService.getTeachingId(tid,cid));
     }
 
-}
+    @ApiOperation("通过老师姓名和课堂的关键字，查询满足条件的授课信息")
+    @GetMapping("/getTeachingByKey")
+    public RespBean getTeachingByKey(String key){
+        return RespBean.ok("获取成功",teachingService.getTeachingByKey(key));
+    }
 
+
+
+}

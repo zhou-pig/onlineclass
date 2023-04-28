@@ -9,6 +9,7 @@
 package com.graduation.onlineclass;
 
 import com.graduation.onlineclass.mapper.QuizMapper;
+import com.graduation.onlineclass.mapper.TeachingMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +20,8 @@ public class MyTest {
     @Autowired
     QuizMapper quizMapper;
 
+    @Autowired
+    TeachingMapper teachingMapper;
     public static void main(String[] args) {
 
     }
@@ -40,5 +43,14 @@ public class MyTest {
         else
             System.out.println(list);
 
+    }
+
+    @Test
+    public void test03(){
+        if(teachingMapper == null){
+            System.out.println("null");
+        }
+//        teachingMapper.getTeachingByKey("数据");
+        teachingMapper.getTeachingId(1L,1L);
     }
 }

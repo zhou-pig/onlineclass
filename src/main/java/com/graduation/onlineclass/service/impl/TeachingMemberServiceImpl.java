@@ -34,4 +34,8 @@ public class TeachingMemberServiceImpl extends ServiceImpl<TeachingMemberMapper,
         map.put("teaching_id",teachingId);
         return teachingMemberMapper.selectByMap(map);
     }
+
+    public Object deleteUserFromTeaching(Long tid, Long uid) {
+        return teachingMemberMapper.deleteUserFromTeaching(tid,uid)>0;
+    }
 }

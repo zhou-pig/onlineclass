@@ -5,4 +5,13 @@
     <select id="getTeachingId" resultType="java.lang.Long">
         select teaching_id from teaching where c_id =#{cid} and u_id=#{tid}
     </select>
+    <select id="getTeachingByKey" resultType="com.graduation.onlineclass.entity.Teaching">
+        select * from teaching WHERE
+                u_id in(
+                SELECT id FROM account_info where real_name like concat('%',#{key},'%') )
+                                  or
+                c_id in(
+                SELECT c_id from course where course_name like concat('%',#{key},'%')
+            )
+    </select>
 </mapper>
