@@ -1,9 +1,11 @@
 package com.graduation.onlineclass.controller;
 
 import com.graduation.onlineclass.entity.AccountInfo;
+import com.graduation.onlineclass.entity.Permission;
 import com.graduation.onlineclass.entity.RespBean;
 import com.graduation.onlineclass.entity.UserInfo;
 import com.graduation.onlineclass.service.impl.AccountInfoServiceImpl;
+import com.graduation.onlineclass.service.impl.PermissionServiceImpl;
 import com.graduation.onlineclass.service.impl.UserInfoServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,6 +33,8 @@ public class UserInfoController {
     UserInfoServiceImpl userInfoService;
     @Autowired
     AccountInfoServiceImpl accountInfoService;
+    @Autowired
+    PermissionServiceImpl permissionService;
 
     @ApiOperation("登录模块，需要传入一个wx的code，保存在session中")
     @GetMapping("/login")
@@ -59,7 +63,13 @@ public class UserInfoController {
             UserInfo userInfo = new UserInfo(wxCode, uId);
             System.out.println("userInfo创建成功");
             System.out.println(userInfo);
-            if (userInfoService.getById(uId).getWxCode() != null) {
+            UserInfo temp =  userInfoService.getById(uId);
+            Permission p = permissionService.getById(uId);
+            System.out.println(p);
+            if(p.getActivated()==0){
+                return RespBean.error("该账号已被禁用，请联系管理员！");
+            }
+            if (temp.getWxCode() != null) {
                 return RespBean.error("该账号已被绑定，请联系管理员！");
             }
             //在绑定之前，先把之前绑定该wx_code的账号数据设置为null

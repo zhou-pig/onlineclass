@@ -7,11 +7,7 @@ import com.graduation.onlineclass.service.PermissionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -27,6 +23,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class PermissionController {
     @Autowired
     PermissionService permissionService;
+
+    @ApiOperation("通过id，获取用户权限")
+    @GetMapping("/getById")
+    public RespBean getById(Long id){
+        return RespBean.ok("用户权限获取成功",permissionService.getById(id));
+    }
+
+    @ApiOperation("传入一个权限对象，进行更新")
+    @PostMapping("/update")
+    public RespBean getById(@RequestBody Permission permission){
+        return RespBean.ok("用户权限更新成功",permissionService.updateById(permission));
+    }
 
     @ApiOperation("修改聊天权限,传入用户id和权限0或1")
     @GetMapping("/setChat")
