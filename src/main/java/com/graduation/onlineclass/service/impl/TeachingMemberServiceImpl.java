@@ -1,5 +1,7 @@
 package com.graduation.onlineclass.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.graduation.onlineclass.entity.AccountInfo;
 import com.graduation.onlineclass.entity.TeachingMember;
 import com.graduation.onlineclass.mapper.TeachingMemberMapper;
 import com.graduation.onlineclass.service.TeachingMemberService;
@@ -37,5 +39,12 @@ public class TeachingMemberServiceImpl extends ServiceImpl<TeachingMemberMapper,
 
     public Object deleteUserFromTeaching(Long tid, Long uid) {
         return teachingMemberMapper.deleteUserFromTeaching(tid,uid)>0;
+    }
+
+    public boolean isExisted(Long uid, Long tid) {
+        QueryWrapper<TeachingMember> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("u_id",uid)
+                .eq("teaching_id",tid);
+        return teachingMemberMapper.selectList(queryWrapper).size()>0;
     }
 }

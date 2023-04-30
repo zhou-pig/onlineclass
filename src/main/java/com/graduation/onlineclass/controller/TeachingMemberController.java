@@ -106,7 +106,9 @@ public class TeachingMemberController {
 
     @PostMapping("/addStudentByFile")
     @ApiOperation("通过文件录入用户信息")
-    public RespBean saveFile(@RequestParam("file") MultipartFile file) {
+    public RespBean saveFile(@RequestParam("file") MultipartFile file,@RequestParam("tid") Long tid) {
+
+        System.out.println("tid:"+tid);
         try {
             // 获取上传的文件名
             String fileName = file.getOriginalFilename();
@@ -115,22 +117,19 @@ public class TeachingMemberController {
             // 读取文件内容
             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
             String line = null;
-            ArrayList<AccountInfo> failList = new ArrayList<>();
-            ArrayList<AccountInfo> successList = new ArrayList<>();
+            ArrayList<String> failList = new ArrayList<>();
+            ArrayList<String> successList = new ArrayList<>();
             while ((line = br.readLine()) != null) {
                 // 处理每一行的文件内容，比如输出到控制台
                 System.out.println(line);
                 String[] split = line.split(" ");
                 String university = split[0];
-                String role = split[1];
-                String name = split[2];
-                String account = split[3];
-                String password = split[4];
-                AccountInfo info = new AccountInfo(account, password, university, role, name,null, null);
-                if (accountInfoService.isExisted(info) || !accountInfoService.save(info)) {//未录入成功
-                    failList.add(info);
+                String account = split[1];
+                Long uid = accountInfoService.getAccount(account,university).getId();
+                if (!teachingMemberService.isExisted(uid,tid) && teachingMemberService.save(new TeachingMember(uid,tid,null))) {//录入成功
+                    successList.add(line);
                 } else {
-                    successList.add(info);
+                    failList.add(line);
                 }
             }
             HashMap<String, Object> map = new HashMap<>();
