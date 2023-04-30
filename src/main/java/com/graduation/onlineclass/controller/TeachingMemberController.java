@@ -12,15 +12,15 @@ import com.graduation.onlineclass.service.impl.TeachingServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.*;
 
 /**
  * <p>
@@ -102,6 +102,45 @@ public class TeachingMemberController {
     @GetMapping("/deleteUserFromTeaching")
     public RespBean deleteUserFromTeaching(Long tid,Long uid){
         return RespBean.ok("删除成功",teachingMemberService.deleteUserFromTeaching(tid,uid));
+    }
+
+    @PostMapping("/addStudentByFile")
+    @ApiOperation("通过文件录入用户信息")
+    public RespBean saveFile(@RequestParam("file") MultipartFile file) {
+        try {
+            // 获取上传的文件名
+            String fileName = file.getOriginalFilename();
+            // 获取文件输入流
+            InputStream inputStream = file.getInputStream();
+            // 读取文件内容
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+            String line = null;
+            ArrayList<AccountInfo> failList = new ArrayList<>();
+            ArrayList<AccountInfo> successList = new ArrayList<>();
+            while ((line = br.readLine()) != null) {
+                // 处理每一行的文件内容，比如输出到控制台
+                System.out.println(line);
+                String[] split = line.split(" ");
+                String university = split[0];
+                String role = split[1];
+                String name = split[2];
+                String account = split[3];
+                String password = split[4];
+                AccountInfo info = new AccountInfo(account, password, university, role, name,null, null);
+                if (accountInfoService.isExisted(info) || !accountInfoService.save(info)) {//未录入成功
+                    failList.add(info);
+                } else {
+                    successList.add(info);
+                }
+            }
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("failList", failList);
+            map.put("successList", successList);
+            return RespBean.ok("录入成功", map);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return RespBean.error("文件读取错误");
+        }
     }
 }
 

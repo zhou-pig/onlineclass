@@ -116,4 +116,10 @@ public class AccountInfoController {
             return RespBean.error("文件读取错误");
         }
     }
+
+    @ApiOperation("传入account和university，获取账号信息")
+    @GetMapping("/getAccount")
+    public RespBean getAccount(String account,String university) {
+        return RespBean.ok("获取成功", accountInfoService.getAccount(account,university));
+    }
 }

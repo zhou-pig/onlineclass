@@ -68,4 +68,8 @@ public class AccountInfoServiceImpl extends ServiceImpl<AccountInfoMapper, Accou
                 .eq("account",accountInfo.getAccount());
         return accountInfoMapper.selectList(queryWrapper).size()>0;
     }
+
+    public AccountInfo getAccount(String account, String university) {
+        return  accountInfoMapper.getAccount(account,university);
+    }
 }

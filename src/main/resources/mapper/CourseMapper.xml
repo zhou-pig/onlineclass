@@ -2,4 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.graduation.onlineclass.mapper.CourseMapper">
 
+    <insert id="myInsert">
+        insert into course values (#{cId},#{courseName},#{courseBasicInfo},credit);
+        SELECT LAST_INSERT_ID();
+    </insert>
 </mapper>

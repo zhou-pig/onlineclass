@@ -14,4 +14,7 @@
             real_name like CONCAT('%', #{key}, '%') or
             account like CONCAT('%', #{key}, '%')
     </select>
+    <select id="getAccount" resultType="com.graduation.onlineclass.entity.AccountInfo">
+        select * from account_info where account = #{account} and university = #{university}
+    </select>
 </mapper>

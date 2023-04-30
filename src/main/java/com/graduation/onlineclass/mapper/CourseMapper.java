@@ -15,4 +15,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CourseMapper extends BaseMapper<Course> {
 
+    Long myInsert(Long cId, String courseName, String courseBasicInfo, Integer credit);
 }

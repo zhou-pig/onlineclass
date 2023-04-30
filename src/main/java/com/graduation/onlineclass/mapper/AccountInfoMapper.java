@@ -21,4 +21,6 @@ public interface AccountInfoMapper extends BaseMapper<AccountInfo> {
     List<Long> getAllId();
 
     List<Long> getAllIdByKey(String key);
+
+    AccountInfo getAccount(String account, String university);
 }
