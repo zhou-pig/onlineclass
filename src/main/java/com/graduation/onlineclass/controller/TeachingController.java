@@ -66,14 +66,13 @@ public class TeachingController {
         String university = (String) map.get("university");
         AccountInfo teacher = accountInfoService.getAccount(account, university);
         if(teacher == null)
-            return RespBean.error("无改老师信息！");
+            return RespBean.error("无该老师信息！");
         String courseName = (String) map.get("courseName");
         Integer credit = Integer.valueOf((String) map.get("credit"));
         String basicInfo = (String) map.get("basicInfo");
         Course course = new Course(null, courseName, basicInfo, credit);
         courseService.save(course);
         Long cid = course.getCId();
-
         if (teachingService.save(new Teaching(cid, teacher.getId(), null)))
             return RespBean.ok("新增成功");
         else
