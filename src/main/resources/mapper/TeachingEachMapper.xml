@@ -2,4 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.graduation.onlineclass.mapper.TeachingEachMapper">
 
+    <select id="getByTid" resultType="com.graduation.onlineclass.entity.TeachingEach">
+        select * from teaching_each where teaching_id =#{tid} order by start_time desc
+    </select>
 </mapper>

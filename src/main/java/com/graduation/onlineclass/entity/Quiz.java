@@ -53,7 +53,7 @@ public class Quiz implements Serializable {
     private Integer isended;
 
     @ApiModelProperty(value = "题目所在课堂id")
-    private Long teachingId;
+    private Long teachingEachId;
 
     @ApiModelProperty(value = "题目分数")
     private Integer score;
