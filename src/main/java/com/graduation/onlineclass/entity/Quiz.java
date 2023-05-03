@@ -38,12 +38,14 @@ public class Quiz implements Serializable {
 
     @ApiModelProperty(value = "对于判断，正确为：1，错误为：0。对于选择题，单选就是一个选项序号，多选如：0,1,2")
     private String answer;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")//后端注解格式化日期
     @ApiModelProperty(value = "题目开始时间")
     private Date startTime;
 
     @ApiModelProperty(value = "答题时间，单位：秒")
     private Integer duration;
+    
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")//后端注解格式化日期
     @ApiModelProperty(value = "题目结束时间")
     private Date endTime;
@@ -53,6 +55,7 @@ public class Quiz implements Serializable {
     private Integer isended;
 
     @ApiModelProperty(value = "题目所在课堂id")
+    @TableField("teaching_each_id")
     private Long teachingEachId;
 
     @ApiModelProperty(value = "题目分数")

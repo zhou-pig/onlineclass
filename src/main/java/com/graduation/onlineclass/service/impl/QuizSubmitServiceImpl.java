@@ -4,7 +4,11 @@ import com.graduation.onlineclass.entity.QuizSubmit;
 import com.graduation.onlineclass.mapper.QuizSubmitMapper;
 import com.graduation.onlineclass.service.QuizSubmitService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -16,5 +20,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class QuizSubmitServiceImpl extends ServiceImpl<QuizSubmitMapper, QuizSubmit> implements QuizSubmitService {
+    @Autowired
+    QuizSubmitMapper quizSubmitMapper;
+    public List<Map<String,Object>> getByQid(Long qid) {
+        return quizSubmitMapper.getByQid(qid);
+    }
 
+    public List<Map<String, Object>> getRightByQid(Long qid) {
+        return quizSubmitMapper.getRightByQid(qid);
+    }
 }

@@ -8,6 +8,6 @@
                  left join quiz_submit qs
                            on qs.q_id = q.q_id
                                and qs.u_id = #{uid}
-        where q.teaching_id = #{tid}
+        where q.teaching_each_id = #{tid}
     </select>
 </mapper>

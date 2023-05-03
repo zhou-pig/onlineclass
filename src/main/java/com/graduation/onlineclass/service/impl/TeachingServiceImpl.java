@@ -58,7 +58,7 @@ public class TeachingServiceImpl extends ServiceImpl<TeachingMapper, Teaching> i
         }
         return list;
     }
-    public Object getTeachingById(Long tid) {
+    public Map<String, Object> getTeachingById(Long tid) {
         Teaching t =teachingMapper.selectById(tid);
         HashMap<String, Object> map = new HashMap<>();
         map.put("course",courseMapper.selectById(t.getCId()));

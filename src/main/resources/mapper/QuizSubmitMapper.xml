@@ -2,4 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.graduation.onlineclass.mapper.QuizSubmitMapper">
 
+    <select id="getByQid" resultType="java.util.Map">
+        select qs.*,q.*,a.* from quiz_submit qs  join quiz q on q.q_id = qs.q_id and qs.q_id = #{qid}
+                                             left join account_info a on qs.u_id = a.id
+
+    </select>
+    <select id="getRightByQid" resultType="java.util.Map">
+        select qs.*,q.*,a.* from quiz_submit qs  join quiz q on q.q_id = qs.q_id and qs.q_id = #{qid} and qs.submit_answer = q.answer
+                                                 left join account_info a on qs.u_id = a.id
+    </select>
 </mapper>

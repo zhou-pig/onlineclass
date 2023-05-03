@@ -57,6 +57,13 @@ public class QuizController {
         return RespBean.ok("获取成功",quizService.getMyQuiz(tid,uid));
     }
 
+    @ApiOperation("传入q_id，获取该题目的作答情况")
+    @GetMapping("/getQuizResult")
+    public RespBean getQuizResult(Long qid){
+
+        return RespBean.ok("获取成功",quizService.getQuizResult(qid));
+    }
+
     @ApiOperation("提交一个题目")
     @PostMapping("/submitQuiz")
     public RespBean insertQuizSubmit(@RequestBody QuizSubmit quizSubmit) {
@@ -67,4 +74,3 @@ public class QuizController {
         return RespBean.error("题目提交失败，请重试");
     }
 }
-
