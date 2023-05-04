@@ -48,7 +48,7 @@ public class QuizServiceImpl extends ServiceImpl<QuizMapper, Quiz> implements Qu
     }
 
     public Map<String,Object> getQuizResult(Long qid) {
-        Map<String,Object> map = new HashMap<String,Object>();
+        Map<String,Object> map = new HashMap<>();
         //先获取该题目对应的学生人数
         Quiz quiz = quizMapper.selectById(qid);
         TeachingEach teachingEach = teachingEachMapper.selectById(quiz.getTeachingEachId());
@@ -60,6 +60,9 @@ public class QuizServiceImpl extends ServiceImpl<QuizMapper, Quiz> implements Qu
         //获取正确作答的情况
         List<Map<String,Object>> right = quizSubmitService.getRightByQid(qid);
         map.put("rightSubmitted",right);
+        //获取未作答学生列表
+        List<Map<String,Object>> undo = quizSubmitService.getUndoStudent(teaching.getTeachingId(),qid);
+        map.put("undoStudent",undo);
         return map;
     }
 }

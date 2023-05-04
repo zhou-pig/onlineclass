@@ -1,6 +1,6 @@
 package com.graduation.onlineclass.service;
 
-import com.graduation.onlineclass.entity.File;
+import com.graduation.onlineclass.entity.MyFile;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author 周富雄
  * @since 2023-02-03
  */
-public interface FileService extends IService<File> {
+public interface MyFileService extends IService<MyFile> {
 
 }

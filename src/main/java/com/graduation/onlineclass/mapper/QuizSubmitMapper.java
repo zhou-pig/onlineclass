@@ -23,4 +23,6 @@ public interface QuizSubmitMapper extends BaseMapper<QuizSubmit> {
     List<Map<String, Object> > getByQid(Long qid);
 
     List<Map<String, Object>> getRightByQid(Long qid);
+
+    List<Map<String, Object>> getUndoStudent(Long teachingId, Long qid);
 }
