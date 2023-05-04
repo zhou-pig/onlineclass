@@ -34,6 +34,38 @@ public class MyFileController {
     @Autowired
     MyFileServiceImpl myFileService;
 
+    @GetMapping("/getById")
+    @ApiOperation("传入id,获得ppt文件")
+    public void getById(Long id, HttpServletResponse response) {
+        MyFile myFile = myFileService.getById(id);
+        String filePath = baseFilePath + myFile.getName();//文件路径
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("multipart/form-data");
+        response.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
+        System.out.println("查找成功！"+filePath);
+        File file = new File(filePath);
+        if (file.exists() && file.isFile()) {
+            try {
+                System.out.println("文件存在！");
+                InputStream inputStream = new FileInputStream(file);
+                OutputStream outputStream = response.getOutputStream();//获取response的输出流对象
+                IOUtils.copy(inputStream, outputStream);
+                //刷新输出流
+                outputStream.flush();
+                //关闭输出流
+                outputStream.close();
+                inputStream.close();
+                return;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("exist:"+file.exists());
+            System.out.println("isFile:"+file.isFile());
+            response.setStatus(500);
+        }
+    }
+
     @GetMapping("/get")
     @ApiOperation("获得ppt文件")
     public void getFile(String fileName, HttpServletResponse response) {
@@ -43,7 +75,6 @@ public class MyFileController {
         response.setCharacterEncoding("utf-8");
         response.setContentType("multipart/form-data");
         response.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
-
         File file = new File(filePath);
         if (file.exists() && file.isFile()) {
             try {
@@ -67,7 +98,8 @@ public class MyFileController {
     @ApiOperation("保存文件")
     public RespBean saveFile(@RequestParam("fileName") String fileName, @RequestParam("uid") Long uid,
                              @RequestParam("teachingEachId") Long teachingEachId,
-                             @RequestParam("file") MultipartFile file) {
+                             @RequestParam("file") MultipartFile file,
+                             HttpServletResponse response) {
 
         //判断文件是否已经存在，存在则不能再上传
         File tempFile = new File(baseFilePath, fileName);
@@ -88,10 +120,12 @@ public class MyFileController {
             } else {
                 //删除保存的文件
                 newFile.delete();
+                response.setStatus(500);
                 return RespBean.error("上次失败，请重试");
             }
         } catch (IOException e) {
             e.printStackTrace();
+            response.setStatus(500);
             return RespBean.error("上次失败，请重试");
         }
     }

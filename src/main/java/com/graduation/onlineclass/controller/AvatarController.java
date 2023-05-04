@@ -31,15 +31,16 @@ public class AvatarController {
     public ResponseEntity<byte[]> generateAvatar(@RequestParam("username") String username) throws IOException {
         BufferedImage image = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics = image.createGraphics();
-        graphics.setBackground(Color.WHITE);
-        graphics.clearRect(0, 0, image.getWidth(), image.getHeight());
-        Font font = new Font(Font.SANS_SERIF, Font.BOLD, 100);
-        graphics.setFont(font);
+
         Random random = new Random();
         int r = random.nextInt(256);
         int g = random.nextInt(256);
         int b = random.nextInt(256);
-        graphics.setColor(new Color(r,g,b));
+        graphics.setBackground(new Color(r,g,b));
+        graphics.clearRect(0, 0, image.getWidth(), image.getHeight());
+        Font font = new Font(Font.SANS_SERIF, Font.BOLD, 100);
+        graphics.setFont(font);
+        graphics.setColor(Color.WHITE);
         graphics.drawString(getInitials(username), 50, 130);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ImageIO.write(image, "png", outputStream);
@@ -47,9 +48,9 @@ public class AvatarController {
         headers.setContentType(MediaType.IMAGE_PNG);
         return new ResponseEntity<>(outputStream.toByteArray(), headers, HttpStatus.OK);
     }
-
+    //获取名字的首个汉字
     private String getInitials(String name) {
-        String[] parts = name.split("\\s+");
+        String[] parts = name.split("\\s+");//"\s+" 表示以一个或多个空格作为分隔符进行分割。
         StringBuilder initials = new StringBuilder();
         for (String part : parts) {
             if (!part.isEmpty()) {
