@@ -9,4 +9,7 @@
         SELECT * from account_info where id in(
             SELECT u_id FROM `teaching_member` where teaching_id = #{teachingId})
     </select>
+    <select id="getStudent" resultType="java.util.Map">
+        select * from teaching_member tm join account_info a on a.id=tm.u_id and tm.teaching_id = #{tid}
+    </select>
 </mapper>

@@ -104,6 +104,12 @@ public class TeachingMemberController {
         return RespBean.ok("删除成功",teachingMemberService.deleteUserFromTeaching(tid,uid));
     }
 
+    @ApiOperation("传入teachingId,获取这个课堂的学生信息")
+    @GetMapping("/getStudent")
+    public RespBean getStudent(Long tid){
+        return RespBean.ok("获取成功",teachingMemberService.getStudent(tid));
+    }
+
     @PostMapping("/addStudentByFile")
     @ApiOperation("通过文件录入用户信息")
     public RespBean saveFile(@RequestParam("file") MultipartFile file,@RequestParam("tid") Long tid) {

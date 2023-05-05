@@ -64,6 +64,7 @@ public class QuizController {
         return RespBean.ok("获取成功",quizService.getQuizResult(qid));
     }
 
+
     @ApiOperation("提交一个题目")
     @PostMapping("/submitQuiz")
     public RespBean insertQuizSubmit(@RequestBody QuizSubmit quizSubmit) {

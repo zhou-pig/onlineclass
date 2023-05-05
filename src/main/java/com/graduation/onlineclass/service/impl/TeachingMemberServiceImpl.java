@@ -47,4 +47,8 @@ public class TeachingMemberServiceImpl extends ServiceImpl<TeachingMemberMapper,
                 .eq("teaching_id",tid);
         return teachingMemberMapper.selectList(queryWrapper).size()>0;
     }
+
+    public List<Map<String,Object>> getStudent(Long tid) {
+        return  teachingMemberMapper.getStudent(tid);
+    }
 }

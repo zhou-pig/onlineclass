@@ -18,4 +18,7 @@
             select qs.u_id from quiz_submit qs where qs.q_id = #{qid}
         )
     </select>
+    <select id="getById" resultType="java.util.Map">
+        select * from quiz_submit qs join quiz q on qs.q_id = q.q_id and qs.q_id =#{qid} and qs.u_id =  #{uid}
+    </select>
 </mapper>

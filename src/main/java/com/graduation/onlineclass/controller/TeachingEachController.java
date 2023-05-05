@@ -38,11 +38,25 @@ public class TeachingEachController {
         return RespBean.ok("获取成功",teachingEach);
     }
 
-    @ApiOperation("传入teachingId,获取所有课堂信息")
+    @ApiOperation("传入teachingEachId,获取所有课堂信息")
     @GetMapping("/getByTid")
     public RespBean getByTid(Long tid) {
 
         return RespBean.ok("获取成功",teachingEachService.getByTid(tid));
+    }
+
+    @ApiOperation("传入teachingEachId,获得这堂课学生的分数")
+    @GetMapping("/getScore")
+    public RespBean getScore(Long teachingEachId) {
+
+        return RespBean.ok("获取成功",teachingEachService.getScore(teachingEachId));
+    }
+
+    @ApiOperation("传入teachingEachId,获得这堂课学生的分数（简略版本）")
+    @GetMapping("/getScoreSimple")
+    public RespBean getScoreSimple(Long teachingEachId) {
+
+        return RespBean.ok("获取成功",teachingEachService.getScoreSimple(teachingEachId));
     }
 }
 

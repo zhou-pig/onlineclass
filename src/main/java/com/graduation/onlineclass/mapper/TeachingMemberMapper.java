@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -21,4 +22,6 @@ public interface TeachingMemberMapper extends BaseMapper<TeachingMember> {
     List<AccountInfo> selectByTId(Long teachingId);
 
     int deleteUserFromTeaching(Long tid, Long uid);
+
+    List<Map<String,Object>> getStudent(Long tid);
 }

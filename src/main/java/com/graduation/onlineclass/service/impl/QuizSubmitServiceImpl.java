@@ -33,4 +33,8 @@ public class QuizSubmitServiceImpl extends ServiceImpl<QuizSubmitMapper, QuizSub
     public List<Map<String, Object>> getUndoStudent(Long teachingId, Long qid) {
         return quizSubmitMapper.getUndoStudent(teachingId,qid);
     }
+
+    public Map<String,Object> getById(Long qid, Long uid) {
+        return quizSubmitMapper.getById(qid,uid);
+    }
 }
