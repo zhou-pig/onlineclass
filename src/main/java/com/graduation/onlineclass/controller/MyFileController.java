@@ -45,7 +45,7 @@ public class MyFileController {
     TeachingEachServiceImpl teachingEachService;
 
     @GetMapping("/getById")
-    @ApiOperation("传入id,获得ppt文件")
+    @ApiOperation("通过id,获得文件")
     public void getById(Long id, HttpServletResponse response) {
         MyFile myFile = myFileService.getById(id);
         String filePath = baseFilePath + myFile.getName();//文件路径
@@ -77,7 +77,7 @@ public class MyFileController {
     }
 
     @GetMapping("/get")
-    @ApiOperation("获得ppt文件")
+    @ApiOperation("通过文件名，获得文件")
     public void getFile(String fileName, HttpServletResponse response) {
         System.out.println("getFile:" + fileName);
         String filePath = baseFilePath + fileName;//文件路径
@@ -126,7 +126,7 @@ public class MyFileController {
             //创建数据库对象
             MyFile myFile = new MyFile(fileName, null, type, new Date(), uid, teachingEachId, baseFilePath, newFile.length());
             if (myFileService.save(myFile)) {
-                return RespBean.ok("上次成功");
+                return RespBean.ok("上次成功",myFile.getId());//同时返回文件的id
             } else {
                 //删除保存的文件
                 newFile.delete();

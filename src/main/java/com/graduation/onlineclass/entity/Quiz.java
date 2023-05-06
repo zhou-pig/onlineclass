@@ -45,7 +45,7 @@ public class Quiz implements Serializable {
 
     @ApiModelProperty(value = "答题时间，单位：秒")
     private Integer duration;
-    
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")//后端注解格式化日期
     @ApiModelProperty(value = "题目结束时间")
     private Date endTime;
@@ -61,5 +61,6 @@ public class Quiz implements Serializable {
     @ApiModelProperty(value = "题目分数")
     private Integer score;
 
-
+    @ApiModelProperty(value = "绑定的图片的id")
+    private Long imageId;
 }
