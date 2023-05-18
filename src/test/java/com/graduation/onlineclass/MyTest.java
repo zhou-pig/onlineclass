@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Stack;
 
 public class MyTest {
     @Autowired
@@ -47,10 +48,9 @@ public class MyTest {
 
     @Test
     public void test03(){
-        if(teachingMapper == null){
-            System.out.println("null");
-        }
-//        teachingMapper.getTeachingByKey("数据");
-        teachingMapper.getTeachingId(1L,1L);
+        Stack<Integer> stack = new Stack<Integer>();
+        for(int x=1; x<=10; x++)stack.push(x);
+        while (stack.size()>5)stack.pop();
+        System.out.println(stack);
     }
 }

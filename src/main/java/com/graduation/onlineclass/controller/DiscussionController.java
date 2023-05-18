@@ -5,6 +5,7 @@ import com.graduation.onlineclass.entity.Discussion;
 import com.graduation.onlineclass.entity.RespBean;
 import com.graduation.onlineclass.service.impl.AccountInfoServiceImpl;
 import com.graduation.onlineclass.service.impl.DiscussionServiceImpl;
+import com.graduation.onlineclass.service.impl.PermissionServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,15 @@ public class DiscussionController {
     DiscussionServiceImpl discussionService;
     @Autowired
     AccountInfoServiceImpl accountInfoService;
-
+    @Autowired
+    PermissionServiceImpl permissionService;
     @ApiOperation("发布一条讨论")
     @PostMapping("/insertDiscussion")
     public RespBean insertDiscussion(@RequestBody Discussion discussion) {
+        Long id = discussion.getUId();
+        if(permissionService.getById(id).getDiscussion()==0){
+            return RespBean.error("你已被禁止发起讨论");
+        }
         if (discussionService.save(discussion))
             return RespBean.ok("讨论发布成功");
         return RespBean.error("发布失败，请稍后重试");

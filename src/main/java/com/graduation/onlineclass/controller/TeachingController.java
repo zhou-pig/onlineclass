@@ -78,5 +78,13 @@ public class TeachingController {
         else
             return RespBean.error("新增失败");
     }
+
+    @ApiOperation("通过teaching_id,删除teaching")
+    @GetMapping("/delete")
+    public RespBean delete(Long id) {
+        if (teachingService.removeById(id))
+            return RespBean.ok("讨论删除成功");
+        return RespBean.error("删除失败，请稍后重试");
+    }
 }
 

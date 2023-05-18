@@ -3,6 +3,7 @@ package com.graduation.onlineclass.controller;
 import com.graduation.onlineclass.entity.Chat;
 import com.graduation.onlineclass.entity.RespBean;
 import com.graduation.onlineclass.service.impl.ChatServiceImpl;
+import com.graduation.onlineclass.service.impl.PermissionServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,16 @@ import java.util.Date;
 public class ChatController {
     @Autowired
     ChatServiceImpl chatService;
+    @Autowired
+    PermissionServiceImpl permissionService;
 
     @ApiOperation("传入一个chat对象插入（无需chatId，发送时间）")
     @PostMapping("/insertChat")
     public RespBean insertChat(@RequestBody Chat chat) {
+        Long id = chat.getSender();
+        if(permissionService.getById(id).getChat()==0){
+            return RespBean.error("你已被禁言");
+        }
         chat.setSendTime(new Date());
         if (chatService.save(chat)) {
             return RespBean.ok("信息发送成功");
