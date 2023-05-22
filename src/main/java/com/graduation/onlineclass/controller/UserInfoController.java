@@ -69,7 +69,8 @@ public class UserInfoController {
             if(p.getActivated()==0){
                 return RespBean.error("该账号已被禁用，请联系管理员！");
             }
-            if (temp.getWxCode() != null) {
+            //已经绑定了wxcode，且与当前的不同，说明被别人绑定了
+            if (temp.getWxCode() != null && temp.getWxCode().equals(wxCode)) {
                 return RespBean.error("该账号已被绑定，请联系管理员！");
             }
             //在绑定之前，先把之前绑定该wx_code的账号数据设置为null

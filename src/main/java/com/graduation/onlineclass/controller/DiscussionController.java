@@ -11,10 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -43,6 +40,7 @@ public class DiscussionController {
         if(permissionService.getById(id).getDiscussion()==0){
             return RespBean.error("你已被禁止发起讨论");
         }
+        discussion.setTime(new Date());
         if (discussionService.save(discussion))
             return RespBean.ok("讨论发布成功");
         return RespBean.error("发布失败，请稍后重试");
